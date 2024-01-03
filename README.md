@@ -1,6 +1,6 @@
 # -RE-Sources-Relationnelles
 
-Mellah Yassine /
-Michel Faustine /
-Kirchhofer Raoul /
-Wietrich Pierre
+* Mellah Yassine<br/>
+* Michel Faustine<br/>
+* Kirchhofer Raoul<br/>
+* Wietrich Pierre<br/>
