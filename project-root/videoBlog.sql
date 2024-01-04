@@ -23,7 +23,7 @@ CREATE TABLE post(
    FOREIGN KEY(id_user) REFERENCES user(id_user)
 );
 
-CREATE TABLE comments(
+CREATE TABLE comment(
    id_comment INT,
    text TEXT,
    sendingDate DATETIME,
