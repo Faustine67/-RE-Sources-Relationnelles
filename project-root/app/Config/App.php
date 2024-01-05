@@ -15,8 +15,9 @@ class App extends BaseConfig
      * WITH a trailing slash:
      *
      *    http://example.com/
-     */
-    public string $baseURL = 'http://localhost/CESI/-RE-Sources-Relationnelles/project-root/public';
+     *
+    public string $baseURL = 'http://localhost:8888/';
+
 
     /**
      * Allowed Hostnames in the Site URL other than the hostname in the baseURL.
