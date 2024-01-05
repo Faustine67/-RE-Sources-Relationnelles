@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
-use App\Model\UserModel;
+use App\Models\UserModel;
 
 class UserController extends BaseController
 {

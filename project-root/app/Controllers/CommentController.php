@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
-use App\Model\CommentModel;
+use App\Models\CommentModel;
 
 class CommentController extends BaseController{
 
