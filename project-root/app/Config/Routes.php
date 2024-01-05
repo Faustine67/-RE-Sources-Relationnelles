@@ -7,4 +7,5 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Home::index');
 
-$routes->get('smarty', 'Home::smartyTest');
+$routes->get('liste_post', 'PostController::index');
+
