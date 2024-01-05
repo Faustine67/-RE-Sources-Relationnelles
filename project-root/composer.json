@@ -12,7 +12,12 @@
     "require": {
         "php": "^7.4 || ^8.0",
         "codeigniter4/framework": "^4.0",
+<<<<<<< Updated upstream
         "google/apiclient": "2.15.0"
+=======
+        "google/apiclient": "2.15.0",
+        "smarty/smarty": "^4.3"
+>>>>>>> Stashed changes
     },
     "require-dev": {
         "fakerphp/faker": "^1.9",
