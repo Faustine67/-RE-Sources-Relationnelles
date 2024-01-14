@@ -15,8 +15,8 @@ class App extends BaseConfig
      * WITH a trailing slash:
      *
      *    http://example.com/
-     *
-    public string $baseURL = 'http://localhost:8888/';
+     */
+    public string $baseURL = 'http://resourcesrelationnelles/';
 
 
     /**
