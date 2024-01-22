@@ -6,13 +6,13 @@ use CodeIgniter\Model;
 
 class UserModel extends Model
 {
-    protected $table            = 'users';
-    protected $primaryKey       = 'id';
+    protected $table            = 'user';
+    protected $primaryKey       = 'id_user';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_user','firstname','lastname','password','email'];
+    protected $allowedFields    = ['firstname','lastname','password','email'];
 
     // Dates
     protected $useTimestamps = false;
@@ -22,7 +22,12 @@ class UserModel extends Model
     protected $deletedField  = 'deleted_at';
 
     // Validation
-    protected $validationRules      = [];
+    protected $validationRules      = [
+        'firstname'  => 'required|string|max_length[100]',
+        'lastname'   => 'required|string|max_length[100]',
+        'id_user'   => 'required|integer',
+        'id_post'   => 'required|integer',
+    ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
     protected $cleanValidationRules = true;

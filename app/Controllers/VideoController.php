@@ -5,6 +5,7 @@ namespace App\Controllers;
 use CodeIgniter\Controller;
 use Google\Client;
 use Google\Service\YouTube;
+use App\Models\VideoModel;
 
 class VideoController extends BaseController {
     public function index() {
@@ -29,7 +30,6 @@ class VideoController extends BaseController {
 
         // Désactiver la vérification du certificat
         $client->setHttpClient(new \GuzzleHttp\Client(['verify' => false]));
-
         // Récupération des valeurs du formulaire
         $search_query = $this->request->getPost('search_query');
         $sortby = $this->request->getPost('sortby');
@@ -44,5 +44,25 @@ class VideoController extends BaseController {
         ));
         // Retourner la vue
         return view('results_youtube', ['videos' => $videos]);
+    }
+
+    // Dans votre contrôleur, par exemple VideoController.php
+    public function save() {
+        $data = [
+            'youtube_id' => $this->request->getPost('youtube_id'),
+            'title' => $this->request->getPost('title'),
+            'thumbnails_url' => $this->request->getPost('thumbnails_url'),
+            'publicationDate' => $this->request->getPost('publicationDate')
+        ];
+        
+        // Formater la date au format 'YYYY-MM-DD'
+        $data['publicationDate'] = date('Y-m-d', strtotime($data['publicationDate']));
+
+        // Enregistrez ces données dans votre modèle VideoModel
+        $videoModel = new VideoModel();
+        $videoModel->insert($data);
+
+        // Redirigez l'utilisateur vers la page des résultats ou une autre page selon vos besoins
+        return redirect()->to('youtube');
     }
 }
