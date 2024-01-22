@@ -27,6 +27,9 @@ class VideoController extends BaseController {
         // Créer un objet Google_Service_YouTube
         $youtube = new YouTube($client);
 
+        // Désactiver la vérification du certificat
+        $client->setHttpClient(new \GuzzleHttp\Client(['verify' => false]));
+
         // Récupération des valeurs du formulaire
         $search_query = $this->request->getPost('search_query');
         $sortby = $this->request->getPost('sortby');
