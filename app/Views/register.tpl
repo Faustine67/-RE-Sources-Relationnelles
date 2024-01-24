@@ -1,49 +1,45 @@
-
-        <h3>Register</h3>
-        <hr>
-        <form class="" action="/register" method="post">
-
-              <div class="form-group">
-               <label for="firstname">First Name</label>
-               <input type="text" class="form-control" name="firstname" id="firstname" value="<?= set_value('firstname') ?>">
-              </div>
-            </div>
-           
-              <div class="form-group">
-               <label for="lastname">Last Name</label>
-               <input type="text" class="form-control" name="lastname" id="lastname" value="<?= set_value('lastname') ?>">
-              </div>
-            </div>
-              <div class="form-group">
-               <label for="email">Email address</label>
-               <input type="text" class="form-control" name="email" id="email" value="<?= set_value('email') ?>">
-              </div>
-            </div>
-              <div class="form-group">
-               <label for="password">Password</label>
-               <input type="password" class="form-control" name="password" id="password" value="">
-             </div>
-           </div>
-             <div class="form-group">
-              <label for="password_confirm">Confirm Password</label>
-              <input type="password" class="form-control" name="password_confirm" id="password_confirm" value="">
-            </div>
-          </div>
-          <?php if (isset($validation)): ?>
-                <?= $validation->listErrors() ?>
-              </div>
-            </div>
-          <?php endif; ?>
-          </div>
-
-          <div class="row">
-              <button type="submit">Register</button>
-            </div>
-              <a href="/">Already have an account</a>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
+{block name='register'}
+  <div class="register">
+      {$title}
   </div>
+{/block}
+
+{block name='content'}
+  <div class="content">
+
+    <form action="register" method="post" >
+
+    <div>
+    <label for="firstname">First Name</label>
+    <input type="text" name="firstname" id="firstname" value="{if isset($smarty.post.firstname)}{$smarty.post.firstname}{/if}">
 </div>
+
+<div>
+    <label for="lastname">Last Name</label>
+    <input type="text" name="lastname" id="lastname" value="{if isset($smarty.post.lastname)}{$smarty.post.lastname}{/if}">
+</div>
+
+<div>
+    <label for="email">Email address</label>
+    <input type="text"  name="email" id="email" value="{if isset($smarty.post.email)}{$smarty.post.email}{/if}">
+</div>
+
+<div>
+    <label for="password">Password</label>
+    <input type="password"  name="password" id="password" value="">
+</div>
+
+<div>
+    <label for="password_confirm">Confirm Password</label>
+    <input type="password"  name="password_confirm" id="password_confirm" value="">
+</div>
+
+
+        {if isset($validation)}
+            <p>{$validation->listErrors()}</p>
+        {/if}
+
+            <button type="submit">S'inscrire</button>
+            <a href="login">Vous avez déjà un compte?</a>
+    </form>
+{/block}

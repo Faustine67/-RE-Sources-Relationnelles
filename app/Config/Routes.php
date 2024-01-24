@@ -12,4 +12,5 @@ $routes->get('liste_post', 'PostController::index');
 $routes->get('youtube/', 'VideoController::index');
 $routes->post('results_youtube/', 'VideoController::search');
 $routes->get('login/','UserController::login');
-// $routes->match(['get','post'],'register', 'Users::register', ['filter' => 'noauth']);
+// $routes->get('register/','UserController::register');
+$routes->match(['get','post'],'register', 'UserCOntroller::register');

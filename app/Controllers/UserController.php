@@ -54,18 +54,18 @@ class UserController extends BaseController
             ) ;
     }
 
-	private function setUserSession($user){
-		$data = [
-			'id' => $user['id'],
-			'firstname' => $user['firstname'],
-			'lastname' => $user['lastname'],
-			'email' => $user['email'],
-			'isLoggedIn' => true,
-		];
+	// private function setUserSession($user){
+	// 	$data = [
+	// 		'id' => $user['id'],
+	// 		'firstname' => $user['firstname'],
+	// 		'lastname' => $user['lastname'],
+	// 		'email' => $user['email'],
+	// 		'isLoggedIn' => true,
+	// 	];
 
-		session()->set($data);
-		return true;
-	}
+	// 	session()->set($data);
+	// 	return true;
+	// }
 
 	public function register(){
 		$data = [];
@@ -76,7 +76,7 @@ class UserController extends BaseController
 			$rules = [
 				'firstname' => 'required|min_length[3]|max_length[20]',
 				'lastname' => 'required|min_length[3]|max_length[20]',
-				'email' => 'required|min_length[6]|max_length[50]|valid_email|is_unique[users.email]',
+				'email' => 'required|min_length[6]|max_length[50]|valid_email|is_unique[user.email]',
 				'password' => 'required|min_length[8]|max_length[255]',
 				'password_confirm' => 'matches[password]',
 			];
@@ -99,11 +99,9 @@ class UserController extends BaseController
 
 			}
 		}
-
-
-		echo view('templates/header', $data);
-		echo view('register');
-		echo view('templates/footer');
+        return $this->smartyDisplay(
+            view: 'register'
+            ) ;
 	}
 
 	public function profile(){
