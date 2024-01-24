@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Controllers\VideoController;
+use App\Models\VideoIdPostIdModel;
 use CodeIgniter\HTTP\ResponseInterface;
 use App\Models\PostModel;
 use App\Models\CommentModel;
@@ -38,42 +40,46 @@ class PostController extends BaseController
 
     public function create()
     {
+        // Ouverture d'une session
+        // $session = \Config\Services::session();
         // Récupérer les informations de la vidéo depuis le formulaire de la vue de recherche grâce à la méthode post
-        $videoDetails['youtube_id'] = $this->request->getPost('youtube_id');
-        $videoDetails['title'] = $this->request->getPost('title');
-        $videoDetails['publicationDate'] = $this->request->getPost('publicationDate');
-        $videoDetails['thumbnails_url'] = $this->request->getPost('thumbnails_url');
+        $youtube_id = $this->request->getPost('youtube_id');
+        $title = $this->request->getPost('title');
+        $publicationDate = $this->request->getPost('publicationDate');
+        $thumbnails_url = $this->request->getPost('thumbnails_url');
 
+        // Création d'un tableau avec ces données
+        $videoDetails = [
+            'youtube_id' => $youtube_id,
+            'title' => $title,
+            'publicationDate' => date('Y-m-d', strtotime($publicationDate)),
+            'thumbnails_url' => $thumbnails_url,
+        ];
+
+        // Insertion des données dans la session
+        $this->session->set(['videoDetails' => $videoDetails]);
         // Charger la vue du formulaire de création de post avec les détails de la vidéo
-        return view('create_post', ['videoDetails' => $videoDetails]);
+        
+        return view('create_post', ['videoDetails' => $this->session->get('videoDetails')]);
     }
 
-    
     // Toute la fonction est à revoir (ne marche pas)
     public function save()
     {
-        $data_post = [
+        $postDetails = [
+            'text' => $this->request->getPost('text'),
             'id_user' => 1,
-            'text' => $this->request->getPost('text'),
-            // Ajoutez d'autres champs nécessaires
         ];
-
+        $this->session->set(['postDetails' => $postDetails]);
+        $videoController = new VideoController();
+        $videoController->save();
         $postModel = new PostModel();
-        $postModel->insert($data_post);
-        $data_post_id = [
-            'id_post' => $postModel->find($post_id),
-            'youtube_id' => $this->request->getPost('youtube_id'),
-            'title' => $this->request->getPost('title'),
-            'thumbnails_url' => $this->request->getPost('thumbnails_url'),
-            'text' => $this->request->getPost('text'),
-            // Ajoutez d'autres champs nécessaires
-        ];
-
-        // Enregistrez ces données dans votre modèle PostModel
-
+        $postDetails['id_post'] = $postModel->insertPost($postDetails);
+        $videoIdPostIdModel = new VideoIdPostIdModel();
+        $videoIdPostIdModel->insert(['id_post' => $postDetails['id_post'], 'youtube_id' => $_SESSION['videoDetails']['youtube_id']]);
 
         // Redirigez l'utilisateur vers la page des résultats ou une autre page selon vos besoins
-        return redirect()->to('post');
+        return redirect()->to('');
     }
 
 

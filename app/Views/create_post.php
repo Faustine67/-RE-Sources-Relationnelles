@@ -13,11 +13,6 @@
         
         <!-- Formulaire de création de post -->
         <form action="<?= site_url('post/save'); ?>" method="post">
-            <!-- Champs cachés avec les détails de la vidéo -->
-            <input type="hidden" name="youtube_id" value="<?= $videoDetails['youtube_id']; ?>">
-            <input type="hidden" name="title" value="<?= $videoDetails['title']; ?>">
-            <input type="hidden" name="thumbnails_url" value="<?= $videoDetails['thumbnails_url']; ?>">
-
             <iframe width="320" height="180" src="https://www.youtube.com/embed/<?= $videoDetails['youtube_id']; ?>" frameborder="0" allowfullscreen></iframe>
             <br>
             <!-- Champ pour le texte du post -->

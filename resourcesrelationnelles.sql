@@ -36,9 +36,9 @@ CREATE TABLE comment(
 
 -- Table associative entre video et post
 CREATE TABLE video_id_post_id(
+   id_videopost INT AUTO_INCREMENT PRIMARY KEY,
    youtube_id VARCHAR(20) NOT NULL,
    id_post INT NOT NULL,
-   PRIMARY KEY(youtube_id, id_post),
    FOREIGN KEY(youtube_id) REFERENCES video(youtube_id),
    FOREIGN KEY(id_post) REFERENCES post(id_post)
 );

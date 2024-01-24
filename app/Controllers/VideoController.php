@@ -29,7 +29,7 @@ class VideoController extends BaseController {
         $youtube = new YouTube($client);
 
         // Désactiver la vérification du certificat
-        $client->setHttpClient(new \GuzzleHttp\Client(['verify' => false]));
+        $client->setHttpClient(new \GuzzleHttp\Client);
         // Récupération des valeurs du formulaire
         $search_query = $this->request->getPost('search_query');
         $sortby = $this->request->getPost('sortby');
@@ -46,23 +46,21 @@ class VideoController extends BaseController {
         return view('results_youtube', ['videos' => $videos]);
     }
 
-    // Dans votre contrôleur, par exemple VideoController.php
+    // Save en base de données depuis la session
     public function save() {
         $data = [
-            'youtube_id' => $this->request->getPost('youtube_id'),
-            'title' => $this->request->getPost('title'),
-            'thumbnails_url' => $this->request->getPost('thumbnails_url'),
-            'publicationDate' => $this->request->getPost('publicationDate')
+            'youtube_id' => $_SESSION['videoDetails']['youtube_id'],
+            'title' => $_SESSION['videoDetails']['title'],
+            'thumbnails_url' => $_SESSION['videoDetails']['thumbnails_url'],
+            'publicationDate' => $_SESSION['videoDetails']['publicationDate']
         ];
         
-        // Formater la date au format 'YYYY-MM-DD'
-        $data['publicationDate'] = date('Y-m-d', strtotime($data['publicationDate']));
 
         // Enregistrez ces données dans votre modèle VideoModel
         $videoModel = new VideoModel();
-        $videoModel->insert($data);
+        $videoModel->save($data);
 
         // Redirigez l'utilisateur vers la page des résultats ou une autre page selon vos besoins
-        return redirect()->to('youtube');
+        // return redirect()->to('youtube');
     }
 }

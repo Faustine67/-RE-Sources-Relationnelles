@@ -7,8 +7,8 @@ use CodeIgniter\Model;
 class VideoIdPostIdModel extends Model
 {
     protected $table            = 'video_id_post_id';
-    protected $primaryKey       = ['youtube_id','id_post'];
-    protected $useAutoIncrement = false;
+    protected $primaryKey       = 'id_videopost';
+    protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;

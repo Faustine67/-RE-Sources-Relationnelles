@@ -25,8 +25,6 @@ class PostModel extends Model
     protected $validationRules      = [
         'text' => 'required|string',
         'id_user' => 'required|integer',
-        'title' => 'required|string',
-        'thumbnails_url' => 'required|string',
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
@@ -42,4 +40,15 @@ class PostModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function insertPost($data)
+    {
+    // Insérer les données dans la table
+    $this->insert($data);
+
+    // Récupérer le dernier ID inséré
+    $lastInsertID = $this->insertID();
+
+    return $lastInsertID;
+    }
 }
