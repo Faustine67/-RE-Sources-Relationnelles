@@ -18,14 +18,14 @@ class UserController extends BaseController
 		echo view('templates/footer');
 	}
 
-    private function login()
+    public function login()
     {
         $data = [];
         helper(['form']);
 
         
 		if ($this->request->getMethod() == 'post') {
-			//let's do the validation here
+            // conditions de validation des données
 			$rules = [
 				'email' => 'required|min_length[6]|max_length[50]|valid_email',
 				'password' => 'required|min_length[8]|max_length[255]|validateUser[email,password]',
@@ -33,7 +33,7 @@ class UserController extends BaseController
 
 			$errors = [
 				'password' => [
-					'validateUser' => 'Email or Password don\'t match'
+					'validateUser' => 'L\'email ou le Password ne correspondent pas'
 				]
 			];
 
@@ -47,10 +47,11 @@ class UserController extends BaseController
 
 				$this->setUserSession($user);
 				//$session->setFlashdata('success', 'Successful Registration');
-				return redirect()->to('dashboard');
-
 			}
         }
+        return $this->smartyDisplay(
+            view: 'login'
+            ) ;
     }
 
 	private function setUserSession($user){
