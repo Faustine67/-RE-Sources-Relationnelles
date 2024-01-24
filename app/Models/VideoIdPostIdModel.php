@@ -6,13 +6,13 @@ use CodeIgniter\Model;
 
 class VideoIdPostIdModel extends Model
 {
-    protected $table            = 'videoidpostids';
-    protected $primaryKey       = 'id';
+    protected $table            = 'video_id_post_id';
+    protected $primaryKey       = 'id_videopost';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['youtube_id','id_spot'];
+    protected $allowedFields    = ['youtube_id','id_post'];
 
     // Dates
     protected $useTimestamps = false;
@@ -22,7 +22,10 @@ class VideoIdPostIdModel extends Model
     protected $deletedField  = 'deleted_at';
 
     // Validation
-    protected $validationRules      = [];
+    protected $validationRules      = [
+        'youtube_id' => 'required|string',
+        'id_post' => 'required|integer',
+    ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
     protected $cleanValidationRules = true;

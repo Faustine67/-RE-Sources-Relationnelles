@@ -5,6 +5,7 @@ namespace App\Controllers;
 use CodeIgniter\Controller;
 use Google\Client;
 use Google\Service\YouTube;
+use App\Models\VideoModel;
 
 class VideoController extends BaseController {
     public function index() {
@@ -28,8 +29,7 @@ class VideoController extends BaseController {
         $youtube = new YouTube($client);
 
         // Désactiver la vérification du certificat
-        $client->setHttpClient(new \GuzzleHttp\Client(['verify' => false]));
-
+        $client->setHttpClient(new \GuzzleHttp\Client);
         // Récupération des valeurs du formulaire
         $search_query = $this->request->getPost('search_query');
         $sortby = $this->request->getPost('sortby');
@@ -44,5 +44,23 @@ class VideoController extends BaseController {
         ));
         // Retourner la vue
         return view('results_youtube', ['videos' => $videos]);
+    }
+
+    // Save en base de données depuis la session
+    public function save() {
+        $data = [
+            'youtube_id' => $_SESSION['videoDetails']['youtube_id'],
+            'title' => $_SESSION['videoDetails']['title'],
+            'thumbnails_url' => $_SESSION['videoDetails']['thumbnails_url'],
+            'publicationDate' => $_SESSION['videoDetails']['publicationDate']
+        ];
+        
+
+        // Enregistrez ces données dans votre modèle VideoModel
+        $videoModel = new VideoModel();
+        $videoModel->save($data);
+
+        // Redirigez l'utilisateur vers la page des résultats ou une autre page selon vos besoins
+        // return redirect()->to('youtube');
     }
 }

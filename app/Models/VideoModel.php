@@ -6,13 +6,13 @@ use CodeIgniter\Model;
 
 class VideoModel extends Model
 {
-    protected $table            = 'videos';
-    protected $primaryKey       = 'id';
-    protected $useAutoIncrement = true;
+    protected $table            = 'video';
+    protected $primaryKey       = 'youtube_id';
+    protected $useAutoIncrement = false;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['youtube_id','url','title','publicationDate'];
+    protected $allowedFields    = ['title','publicationDate', 'thumbnails_url'];
 
     // Dates
     protected $useTimestamps = false;
@@ -22,7 +22,11 @@ class VideoModel extends Model
     protected $deletedField  = 'deleted_at';
 
     // Validation
-    protected $validationRules      = [];
+    protected $validationRules      = [
+        'title' => 'required|string',
+        'publicationDate' => 'valid_date',
+        'thumbnails_url' => 'required|string',
+    ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
     protected $cleanValidationRules = true;

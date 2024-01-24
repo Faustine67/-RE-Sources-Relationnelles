@@ -7,12 +7,12 @@ use CodeIgniter\Model;
 class CommentModel extends Model
 {
     protected $table            = 'comment';
-    protected $primaryKey       = 'id';
+    protected $primaryKey       = 'id_comment';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_comment','text','sendingDate','id_user','id_post'];
+    protected $allowedFields    = ['text','sendingDate','id_user','id_post'];
 
     // Dates
     protected $useTimestamps = false;
@@ -22,7 +22,12 @@ class CommentModel extends Model
     protected $deletedField  = 'deleted_at';
 
     // Validation
-    protected $validationRules      = [];
+    protected $validationRules      = [
+        'text' => 'required|string',
+        'sendingDate' => 'valid_datetime',
+        'id_user' => 'required|integer',
+        'id_post' => 'required|integer',
+    ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
     protected $cleanValidationRules = true;

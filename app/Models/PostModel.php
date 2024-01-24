@@ -7,12 +7,12 @@ use CodeIgniter\Model;
 class PostModel extends Model
 {
     protected $table            = 'post';
-    protected $primaryKey       = 'id';
+    protected $primaryKey       = 'id_post';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_post','text','id_user'];
+    protected $allowedFields    = ['text','id_user'];
 
     // Dates
     protected $useTimestamps = false;
@@ -22,7 +22,10 @@ class PostModel extends Model
     protected $deletedField  = 'deleted_at';
 
     // Validation
-    protected $validationRules      = [];
+    protected $validationRules      = [
+        'text' => 'required|string',
+        'id_user' => 'required|integer',
+    ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
     protected $cleanValidationRules = true;
@@ -37,4 +40,15 @@ class PostModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function insertPost($data)
+    {
+    // Insérer les données dans la table
+    $this->insert($data);
+
+    // Récupérer le dernier ID inséré
+    $lastInsertID = $this->insertID();
+
+    return $lastInsertID;
+    }
 }
