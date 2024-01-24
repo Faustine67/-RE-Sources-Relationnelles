@@ -14,17 +14,4 @@ class Home extends BaseController
             params: compact('posts', 'title')
         );
     }
-
-    public function smartyTest(){
-
-        $elements = ['Pomme', 'Poire', 'Kiwi', 'Tomates', 'Choux'];
-        $title = 'Test de Smarty';
-        $name = 'Smarties';
-        $logged_in = true;
-
-        return $this->smartyDisplay(
-            view: 'smarty_test',
-            params: compact('elements', 'title', 'name', 'logged_in') 
-        );
-    }
 }
