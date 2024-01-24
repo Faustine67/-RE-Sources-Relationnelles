@@ -72,6 +72,7 @@ class UserController extends BaseController
 		helper(['form']);
 
 		if ($this->request->getMethod() == 'post') {
+            
 			//let's do the validation here
 			$rules = [
 				'firstname' => 'required|min_length[3]|max_length[20]',
@@ -82,7 +83,8 @@ class UserController extends BaseController
 			];
 
 			if (! $this->validate($rules)) {
-				$data['validation'] = $this->validator;
+				$data['validation'] = $this->validator->getErrors();
+                var_dump($data['validation']);
 			}else{
 				$model = new UserModel();
 
@@ -98,9 +100,10 @@ class UserController extends BaseController
 				return redirect()->to('/');
 
 			}
-		}
+        }
         return $this->smartyDisplay(
-            view: 'register'
+            view: 'register',
+            params: compact('data') 
             ) ;
 	}
 

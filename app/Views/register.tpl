@@ -34,12 +34,15 @@
     <input type="password"  name="password_confirm" id="password_confirm" value="">
 </div>
 
-
         {if isset($validation)}
+
+        
             <p>{$validation->listErrors()}</p>
         {/if}
 
             <button type="submit">S'inscrire</button>
+
+            
             <a href="login">Vous avez déjà un compte?</a>
     </form>
 {/block}
