@@ -1,5 +1,5 @@
 <footer>
-    <div class="links">
+    <div class="footer-links">
         <a href="">Politique de confidentialité</a>
         <a href="">Github</a>
         <a href="">Nous contacter</a>
