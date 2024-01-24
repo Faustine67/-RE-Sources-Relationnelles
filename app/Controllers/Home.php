@@ -6,11 +6,12 @@ class Home extends BaseController
 {
     public function index()
     {
-        $title = 'Test de smarty';
+        $posts = ['1' , '2', '3'];
+        $title = 'Bienvenue sur ressources relationnelles !';
 
         return $this->smartyDisplay(
-            view: 'welcome_message',
-            params: compact('title')
+            view: 'home',
+            params: compact('posts', 'title')
         );
     }
 
