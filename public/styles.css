@@ -72,6 +72,12 @@ body {
   margin: 3rem 0;
 }
 
+.subtitle {
+  text-align: center;
+  font-size: 20px;
+  margin: 3rem 0;
+}
+
 #content {
   min-height: 100vh;
 }

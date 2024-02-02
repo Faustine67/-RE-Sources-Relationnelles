@@ -5,7 +5,7 @@
     </div>
     <div class="nav-links">
         <a href="youtube">Recherche</a>
-        <a href="">Tous les posts</a>
+        <a href="liste_post">Tous les posts</a>
         <a href="login">Se connecter</a>
     </nav>
     </div>
