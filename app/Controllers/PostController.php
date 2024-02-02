@@ -14,28 +14,23 @@ use App\Models\VideoModel;
 
 
 class PostController extends BaseController
-{
+{   
+
+    // Vue de tous les posts
     public function index()
     {
-    //     $post = new Post();
-    //     $comment = new Comment();
-    //     $user = new User();
-
-    //      return view('liste_post', ['posts' => $post,'comments' => $comment,'user' => $user]);
-    // }
-
-
         $postModel = new PostModel();
         $commentModel = new CommentModel();
-        $userModel = new UserModel();
 
         // Récupérer les données depuis le modèle
         $posts = $postModel->findAll();
         $comments = $commentModel->findAll();
-        $users = new UserModel();
         
         // Charger la vue et passer les données des posts
-        return view('liste_post', ['posts' => $posts, 'comments' => $comments, 'users' => $users]);
+        return $this->smartyDisplay(
+            view: 'liste_post',
+            params: compact('posts', 'comments')
+        );
     }
 
     public function create()
@@ -59,8 +54,10 @@ class PostController extends BaseController
         // Insertion des données dans la session
         $this->session->set(['videoDetails' => $videoDetails]);
         // Charger la vue du formulaire de création de post avec les détails de la vidéo
-        
-        return view('create_post', ['videoDetails' => $this->session->get('videoDetails')]);
+        return $this->smartyDisplay(
+            view: 'create_post',
+            params: compact('videoDetails')
+        );
     }
 
     // Toute la fonction est à revoir (ne marche pas)
