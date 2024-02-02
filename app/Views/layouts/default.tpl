@@ -11,10 +11,12 @@
 
 <body>
     {include file="templates/header.tpl"}
+        <section id="content">
         <h1>
             {block name="content-title"}{/block}
         </h1>
         {block name="content"}{/block}
+        </section>
 
     {include file="templates/footer.tpl"}
 

@@ -57,7 +57,7 @@ a{
     text-decoration: none;
 }
 
-main {
+body {
     height: 100vh;
     
 }
@@ -70,6 +70,16 @@ main {
   text-align: center;
   font-size: 30px;
   margin: 3rem 0;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 20px;
+  margin: 3rem 0;
+}
+
+#content {
+  min-height: 100vh;
 }
 
 /****** NAV ********/
@@ -160,6 +170,7 @@ margin: auto;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   width: 300px;
+  font-family: 'Poppins';
 }
 .card-header img {
   width: 100%;
@@ -271,4 +282,45 @@ margin: auto;
   font-weight: 500;
 }
 
+/*********** RECHERCHE YOUTUBE *************/
 
+#search-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: auto;
+  gap: 3rem;
+  min-width: 100%;
+}
+
+#search-form input[type="text"] {
+  width: 100%;
+  padding: 20px;
+  border-radius: 50px;
+  border: 1px solid #ccc;
+  margin: 10px 0;
+}
+
+#search-form select {
+  background-color: white;
+  color: black;
+  border: 2px solid #EB644E;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+#search-form input[type="submit"] {
+  padding: 10px 40px;
+  border-radius: 15px;
+  border: 0px;
+  background-color: #EB644E;
+  color: white;
+  cursor: pointer;
+
+}
+
+.search-filters {
+  display: flex;
+  gap: 3rem;
+}

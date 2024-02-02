@@ -8,9 +8,14 @@ use Google\Service\YouTube;
 use App\Models\VideoModel;
 
 class VideoController extends BaseController {
+
     public function index() {
-        $data['title'] = "Recherche Youtube"; // Titre de la page
-        return view('search_youtube', $data);
+        $title = "Recherche Youtube"; // Titre de la page
+
+        return $this->smartyDisplay(
+            view: 'search_youtube',
+            params: compact('title')
+        );
     }
 
     public function search() {
@@ -42,8 +47,12 @@ class VideoController extends BaseController {
             'relevanceLanguage' => $langue,
             'type' => 'video'
         ));
+
         // Retourner la vue
-        return view('results_youtube', ['videos' => $videos]);
+        return $this->smartyDisplay(
+            view: 'results_youtube',
+            params: compact('videos')
+        );
     }
 
     // Save en base de données depuis la session
@@ -52,9 +61,8 @@ class VideoController extends BaseController {
             'youtube_id' => $_SESSION['videoDetails']['youtube_id'],
             'title' => $_SESSION['videoDetails']['title'],
             'thumbnails_url' => $_SESSION['videoDetails']['thumbnails_url'],
-            'publicationDate' => $_SESSION['videoDetails']['publicationDate']
+            'publicationDate' => $_SESSION['videoDetails']['publicationDate'],
         ];
-        
 
         // Enregistrez ces données dans votre modèle VideoModel
         $videoModel = new VideoModel();
