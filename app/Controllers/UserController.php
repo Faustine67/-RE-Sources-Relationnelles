@@ -38,16 +38,10 @@ class UserController extends BaseController
 
 				$user = $model->where('email', $this->request->getVar('email'))
 											->first();
-				
 				if (password_verify(($this->request->getVar('password')), ($user['password']))){
-					dd($_SESSION);
+					$this->session->set(['user' => $user]);
+					return redirect()->to('');
 				}
-				
-				
-				
-				dd($user);		
-				$this->setUserSession($user);
-				//$session->setFlashdata('success', 'Successful Registration');
 			}
         }
         return $this->smartyDisplay(

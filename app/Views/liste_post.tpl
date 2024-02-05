@@ -10,7 +10,7 @@
     <ul>
         {foreach $posts as $post}
             <li>
-                <p>{$post}</p>
+                <p>{$post['text']}</p>
             </li>  
          {foreachelse}
             <p>Aucun post actuellement. </p>

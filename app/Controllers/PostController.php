@@ -65,7 +65,7 @@ class PostController extends BaseController
     {
         $postDetails = [
             'text' => $this->request->getPost('text'),
-            'id_user' => 1,
+            'id_user' => $_SESSION['user']['id_user'],
         ];
         $this->session->set(['postDetails' => $postDetails]);
         $videoController = new VideoController();
