@@ -10,7 +10,7 @@
             <p>{$success}</p>
         {/if}
 
-        <form method="post" action="/login">
+        <form method="post" action="login">
             <div>
                 <label for="email">Email address</label>
                 <input type="text" name="email" id="email" placeholder="Email">

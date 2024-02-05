@@ -96,4 +96,7 @@ abstract class BaseController extends Controller
             // ->setDefaultModifiers(['escape:"htmlall"']); Or
             ->setEscapeHtml(true);
     }
+    
+
 }
+
