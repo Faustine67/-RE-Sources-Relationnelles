@@ -12,6 +12,7 @@ $routes->get('liste_post', 'PostController::index');
 $routes->get('youtube/', 'VideoController::index');
 $routes->post('results_youtube/', 'VideoController::search');
 $routes->get('login/','UserController::login');
+$routes->post('login/','UserController::login');
 $routes->get('register/','UserController::register');
 $routes->match(['get','post'],'register', 'UserCOntroller::register');
 // $routes->post(['change_password/','UserController::change_password']);
