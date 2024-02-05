@@ -92,7 +92,7 @@ class UserController extends BaseController
 					'firstname' => $this->request->getVar('firstname'),
 					'lastname' => $this->request->getVar('lastname'),
 					'email' => $this->request->getVar('email'),
-					'password' => $this->request->getVar('password'),
+					'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
 				];
 				$model->save($newData);
 				$session = session();
@@ -157,5 +157,35 @@ class UserController extends BaseController
 		return redirect()->to('/');
 	}
 
-	//--------------------------------------------------------------------
+	public function change_password() {
+		$id = $this->session->userdata('userId');
+	
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('new_password', 'senha', 'trim|required|min_length[6]|max_length[12]|xss_clean');
+		$this->form_validation->set_rules('password_confirmation', 'confirmacao senha', 'trim|required|min_length[6]|max_length[12]|xss_clean');
+	
+		if ($this->form_validation->run() == true) {
+			$new_password = $this->input->post('new_password');
+			$passwordConfirmation = $this->input->post('password_confirmation');
+	
+			if ($new_password != $passwordConfirmation) {
+				$this->session->set_flashdata('error', $this->lang->line('password_confirmation_differ'));
+			} else {
+				$hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
+				$res = $this->Users_model->update_user_password($id, $hashed_password);
+	
+				if (!empty($res)) {
+					$this->session->set_flashdata('msg', $this->lang->line('update_password_success'));
+				} else {
+					$this->session->set_flashdata('error', $this->lang->line('update_error'));
+				}
+			}
+		} else {
+			$this->session->set_flashdata('error', validation_errors());
+		}
+	
+		//redirect(base_url() . 'users/prepare_change_password/');
+	}
+	
+
 }
