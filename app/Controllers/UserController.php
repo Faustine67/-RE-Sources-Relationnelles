@@ -75,9 +75,9 @@ class UserController extends BaseController
             
 			//let's do the validation here
 			$rules = [
-				'firstname' => 'required|min_length[3]|max_length[20]',
-				'lastname' => 'required|min_length[3]|max_length[20]',
-				'email' => 'required|min_length[6]|max_length[50]|valid_email|is_unique[user.email]',
+				'firstname' => 'required|min_length[3]|max_length[150]',
+				'lastname' => 'required|min_length[3]|max_length[150]',
+				'email' => 'required|min_length[6]|max_length[100]|valid_email|is_unique[user.email]',
 				'password' => 'required|min_length[8]|max_length[255]',
 				'password_confirm' => 'matches[password]',
 			];
@@ -86,15 +86,14 @@ class UserController extends BaseController
 				$data['validation'] = $this->validator->getErrors();
                 var_dump($data['validation']);
 			}else{
-				$model = new UserModel();
-
 				$newData = [
 					'firstname' => $this->request->getVar('firstname'),
 					'lastname' => $this->request->getVar('lastname'),
 					'email' => $this->request->getVar('email'),
 					'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
 				];
-				$model->save($newData);
+				$userModel = new UserModel();
+				$userModel->save($newData);
 				$session = session();
 				$session->setFlashdata('success', 'Successful Registration');
 				return redirect()->to('/');

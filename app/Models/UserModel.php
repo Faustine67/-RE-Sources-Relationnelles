@@ -23,10 +23,12 @@ class UserModel extends Model
 
     // Validation
     protected $validationRules      = [
-        'firstname'  => 'required|string|max_length[100]',
-        'lastname'   => 'required|string|max_length[100]',
-        'id_user'   => 'required|integer',
-        'id_post'   => 'required|integer',
+        // 'firstname'  => 'required|string|max_length[100]',
+        // 'lastname'   => 'required|string|max_length[100]',
+        'firstname' => 'required|string|min_length[3]|max_length[150]',
+        'lastname' => 'required|string|min_length[3]|max_length[150]',
+        'email' => 'required|string|min_length[6]|max_length[100]|valid_email|is_unique[user.email]',
+        'password' => 'required|string',
     ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
