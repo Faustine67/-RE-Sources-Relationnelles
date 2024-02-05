@@ -16,7 +16,7 @@ class App extends BaseConfig
      *
      *    http://example.com/
      */
-    public string $baseURL = 'http://resourcesrelationnelles/';
+    public string $baseURL = 'http://ressourcesrelationnelles/';
 
 
     /**
