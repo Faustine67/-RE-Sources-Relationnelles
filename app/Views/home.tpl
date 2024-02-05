@@ -14,7 +14,7 @@
 <section class="content-container">
 <div class="intro-container">
     <div>
-    <img src="../public/logo.jpeg">
+    <img src="{base_url()}/logo.jpeg">
     </div>
     <div>
     <p> Ressource relationnelles est une plateforme de mise en relation  humaine et sociale et permet a tous ses utilisateurs de consulter des ressrouces sur divers sujets. </p>

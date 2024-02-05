@@ -1,7 +1,7 @@
 <header>
     <nav>
     <div>
-        <img src="../public/logo.jpeg" class="logo">
+        <img src="{base_url()}/logo.jpeg" class="logo">
     </div>
     <div class="nav-links">
         <a href="youtube">Recherche</a>
