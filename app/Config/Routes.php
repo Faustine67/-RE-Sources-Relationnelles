@@ -19,3 +19,4 @@ $routes->match(['get','post'],'register', 'UserCOntroller::register');
 $routes->post('video/save', 'VideoController::save');
 $routes->post('post/create', 'PostController::create');
 $routes->post('post/save', 'PostController::save');
+$routes->get('dashboard/', 'DashboardController::index');
